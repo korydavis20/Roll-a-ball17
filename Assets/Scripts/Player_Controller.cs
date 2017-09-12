@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player_Controller : MonoBehaviour {
 	
 	public float speed;
+
 	private Rigidbody rb;
 	
 	// Use this for initialization
@@ -19,5 +20,11 @@ public class Player_Controller : MonoBehaviour {
 		Vector3 movement = new Vector3 (moveHorizontal,0.0f,moveVertical);
 		
 		rb.AddForce (movement * speed);
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.gameObject.CompareTag ("Pick Up")) {
+			other.gameObject.SetActive (false);
+		}
 	}
 }
